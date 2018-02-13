@@ -62,3 +62,15 @@ bot.dialog('/', [
    
 ]   // session.send('You said ' + session.message.text);
 );
+
+bot.on('conversationUpdate', function(message) {
+    // Send a hello message when bot is added
+    if (message.membersAdded) {
+        message.membersAdded.forEach(function(identity) {
+            if (identity.id === message.address.bot.id) {
+                var reply = new builder.Message().address(message.address).text("Hi! What is your name?").speak("testing application");
+                bot.send(reply);
+            }
+        });
+    }
+});
