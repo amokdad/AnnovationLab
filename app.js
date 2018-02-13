@@ -37,5 +37,11 @@ var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
 bot.dialog('/', function (session) {
-    session.send('You said ' + session.message.text);
+
+    var msg = new builder.Message(session)
+    .speak('This is the text that will be spoken.')
+    .inputHint(builder.InputHint.acceptingInput);
+session.send(msg).endDialog();
+
+   // session.send('You said ' + session.message.text);
 });
