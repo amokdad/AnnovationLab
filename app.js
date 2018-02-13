@@ -18,7 +18,7 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MicrosoftAppPassword,
     openIdMetadata: process.env.BotOpenIdMetadata
 });
-
+ 
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
