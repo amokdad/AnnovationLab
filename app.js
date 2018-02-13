@@ -39,13 +39,18 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
 
-bot.dialog('/', function (session) {
+bot.dialog('/', function (session) {[
 
-    session.say('Please hold while I calculate a response.', 
-    'Please hold while I calculate a response.', 
-    { inputHint: builder.InputHint.ignoringInput }
-    );
-    
+    function(session){
+        session.say('Please hold while I calculate a response.', 'Please hold while I calculate a response.', { inputHint: builder.InputHint.ignoringInput })
+    },
+    function (session, results) {
+        var x = results.response;
+        session.say(x, 
+        "welcome " + x
+        );
+    }
+]
     //var msg = new builder.Message(session).text("test").speak('This is the text that will be spoken.').inputHint(builder.InputHint.expectingInput);
     //session.send(msg).endDialog();
 
