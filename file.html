@@ -93,10 +93,21 @@
             token: 'R_Z17VfYSpE.dAA.QgBJADcAYgBoADgAQQBBAGUAbQBwADIAbgBrAG4ANQB1AHUAbwBLAGcANAA.gKNcRwOl0wE.Q6u77Q92lMY.47wLDhn-Or2xcISDc1Q1z0JxDgohIDvVpjrkyd4JJis',
             webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
         });
+
+        const speechOptions = {
+            speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: 'e8d4cb394b944325a59a5192d5aaafee' }),
+            speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
+            gender: CognitiveServices.SynthesisGender.Female,
+            subscriptionKey: 'e8d4cb394b944325a59a5192d5aaafee',
+            voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+            })
+        };
+
         BotChat.App({
             bot: bot,
             botConnection: botConnection,
-            user: user
+            user: user,
+            speechOptions: speechOptions,
         }, document.getElementById('BotChatGoesHere'));
 
         botConnection.activity$

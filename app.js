@@ -19,6 +19,9 @@ var connector = new builder.ChatConnector({
     openIdMetadata: process.env.BotOpenIdMetadata
 });
  
+
+
+
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
