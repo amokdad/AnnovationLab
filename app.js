@@ -48,11 +48,11 @@ bot.dialog('/', [
         var x = results.response;
         session.say(x, 
         "welcome " + x
-        );
+        )}
    
 ]
     //var msg = new builder.Message(session).text("test").speak('This is the text that will be spoken.').inputHint(builder.InputHint.expectingInput);
     //session.send(msg).endDialog();
 
    // session.send('You said ' + session.message.text);
-});
+);
