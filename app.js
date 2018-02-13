@@ -42,9 +42,13 @@ bot.set('storage', tableStorage);
 bot.dialog('/', [
 
     function(session){
-        var msg = new builder.Message(session).text("test").speak('This is the text that will be spoken.').inputHint(builder.InputHint.expectingInput);
-        session.send(msg)
         
+        builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
+            speak: 'Are you <emphasis level=\"moderate\">sure</emphasis> that you want to cancel this transaction?',
+            retrySpeak: 'Are you <emphasis level=\"moderate\">sure</emphasis> that you want to cancel this transaction?',
+            inputHint: builder.InputHint.expectingInput
+        });
+
     },
     function (session, results) {
         var x = results.response;
