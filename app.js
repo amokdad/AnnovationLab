@@ -42,7 +42,9 @@ bot.set('storage', tableStorage);
 bot.dialog('/', [
 
     function(session){
-        session.say('Please hold while I calculate a response.', 'Please hold while I calculate a response.', { inputHint: builder.InputHint.ignoringInput })
+        var msg = new builder.Message(session).text("test").speak('This is the text that will be spoken.').inputHint(builder.InputHint.expectingInput);
+        session.send(msg)
+        
     },
     function (session, results) {
         var x = results.response;
@@ -50,9 +52,5 @@ bot.dialog('/', [
         "welcome " + x
         )}
    
-]
-    //var msg = new builder.Message(session).text("test").speak('This is the text that will be spoken.').inputHint(builder.InputHint.expectingInput);
-    //session.send(msg).endDialog();
-
-   // session.send('You said ' + session.message.text);
+]   // session.send('You said ' + session.message.text);
 );
