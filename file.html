@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"> </script>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+
+    <style>
+        .example {
+            float: left;
+            margin-right: 20px;
+            width: 300px;
+        }
+
+            .example > h2 {
+                font-family: 'Segoe UI';
+            }
+
+        #BotChatGoesHere {
+           border:1px solid #e1e1e1;
+            float: left;
+            height: 800px;
+            position: relative;
+            width: 500px;
+        }
+    </style>
+    <style>
+        .wc-header{
+            color:black !important;
+            background-color:#137071;
+            background-image: url('/content/images/bgcolor.png');
+        }
+        .wc-console{
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <script>
+        $(document).ready(function () {
+            $('.wc-header').text('Chatbot');
+        })
+    </script>
+    
+        <div id="BotChatGoesHere"></div>
+         
+    
+    <button style="display: none" onclick="postButtonMessage()">Click Me!</button>
+
+    <div style="display: none">
+    <div id="divRecord">
+        <div id="divactRe" style="width: 100%; background-color: white; height: 40px">
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 80%">
+                        <audio id="preview" controls></audio>
+                    </td>
+                    <td>
+                        <button id="record">تسجيل</button>
+                    </td>
+                    <td>
+                        <button id="stop" disabled style="width:80px">توقيف</button></td>
+                </tr>
+            </table>
+
+
+
+        </div>
+        </div>
+    </div>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+
+    <script>
+        const params = BotChat.queryParams(location.search);
+        const user = {
+            id: params['userid'] || 'userid',
+            name: params['username'] || 'username'
+        };
+        const bot = {
+            id: params['botid'] || 'botid',
+            name: params['botname'] || 'botname'
+        };
+        window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+        const botConnection = new BotChat.DirectLine({
+            domain: params['domain'],
+            secret: 'R_Z17VfYSpE.cwA.s7M.D9P8tDpKo6bKbfGEhhXaRcA4AQGrpadeLOWm3W_vxiU',
+            token: 'R_Z17VfYSpE.dAA.QgBJADcAYgBoADgAQQBBAGUAbQBwADIAbgBrAG4ANQB1AHUAbwBLAGcANAA.gKNcRwOl0wE.Q6u77Q92lMY.47wLDhn-Or2xcISDc1Q1z0JxDgohIDvVpjrkyd4JJis',
+            webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
+        });
+        BotChat.App({
+            bot: bot,
+            botConnection: botConnection,
+            user: user
+        }, document.getElementById('BotChatGoesHere'));
+
+        botConnection.activity$
+          .filter(function (activity) {
+              return activity.type === 'event' && activity.name === 'startRecording';
+          })
+          .subscribe(function (activity) {
+              data = JSON.parse(activity.value);
+              startRecording(activity.value);
+          });
+
+        var data = {};
+
+        function startRecording(newColor) {
+            //$('#divRecord').show();
+            
+            $('#divRecord').appendTo('.wc-console');
+            //$('#record').click();
+            //$('.wc-console').append($('#divRecord').html());
+            //document.body.style.backgroundColor = newColor;
+        }
+
+        function postButtonMessage(value) {
+            data.recording = value;
+            botConnection
+              .postActivity({
+                  from: { id: 'me' },
+                  name: 'complaintRecorded',
+                  type: 'event',
+                  value: JSON.stringify(data)
+              })
+              .subscribe(function (id) {
+                  console.log('"buttonClicked" sent');
+              });
+            return false;
+        };
+    </script>
+
+</body>
+</html>
