@@ -42,16 +42,18 @@ bot.set('storage', tableStorage);
 bot.dialog('/', [
 
     function(session){
+        /*
         session.say('Are you sure that you want to cancel this transaction?', 
         'Please hold while I calculate a response.', 
         { inputHint: builder.InputHint.expectingInput });
 
-        /*
+        */
         builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
+            speak: 'Are you sure that you want to cancel this transaction?',
             speak: 'Are you sure that you want to cancel this transaction?',
             inputHint: builder.InputHint.expectingInput
         });
-        */
+        
 
     },
     function (session, results) {
