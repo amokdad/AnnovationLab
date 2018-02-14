@@ -42,9 +42,11 @@ bot.set('storage', tableStorage);
 
 bot.dialog('/', [
     function(session){
+
+        //session.say("We have great event to show you", "We have great event to show you")}
         
-        builder.Prompts.text(session, 'Please choose what language do you want', {            
-            speak: 'Please choose what language do you',
+        builder.Prompts.text(session, 'We have great event to show you, please select Event 1 or Event 2', {            
+            speak: 'We have great event to show you, please select Event 1 or Event 2',
             inputHint: builder.InputHint.expectingInput
         });
 
@@ -52,25 +54,30 @@ bot.dialog('/', [
         msg.attachmentLayout(builder.AttachmentLayout.carousel);
         msg.attachments([
         new builder.HeroCard(session)
-            .title("Vodafone Qatar")
-            .text("Welcome to Vodafone Qatar chatbot")
+            .title("Events")
             //.inputHint(builder.InputHint.expectingInput)
             //.speak("test")
             .images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
             
             .buttons([
-                builder.CardAction.imBack(session, "English", "English"),
-                builder.CardAction.imBack(session, "Arabic","Arabic")
+                builder.CardAction.imBack(session, "Event 1", "Event 2"),
+                builder.CardAction.imBack(session, "Event 1","Event 2")
             ])
         ]);
-        builder.Prompts.choice(session, msg, "Arabic|English");
+        builder.Prompts.choice(session, msg, "Event 1|Event 2");
+        
     },
 
     function(session){
-        builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
+        var x = results.response;
+        session.say("You have selected " + x + ", this event will take place tomorrow at 12 pm", "You have selected " + x + ", this event will take place tomorrow at 12 pm")
+       /* builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
             speak: 'Are you sure that you want to cancel this transaction?',
             inputHint: builder.InputHint.expectingInput
         });
+        
+*/
+        
     },
 
 
@@ -83,34 +90,36 @@ bot.dialog('/', [
 ]   // session.send('You said ' + session.message.text);
 ); 
 
-bot.dialog("testing",[function(session,args){
-    session.say("test","test");
-},function(session,results){
-
-}])
-
 /*
-bot.on('conversationUpdate', function(message) {
-    // Send a hello message when bot is added
-    if (message.membersAdded) {
-        message.membersAdded.forEach(function(identity) {
-            if (identity.id === message.address.bot.id) {
-                var reply = new builder.Message()
-                .address(message.address)
-                .text("Hi! What language would you like to Use")
-                .speak("Testing")
-                bot.send(reply);
+bot.dialog("testing",[function(session,args){
+     
+    builder.Prompts.text(session, 'Please choose what language do you want', {            
+        speak: 'Please choose what language do you',
+        inputHint: builder.InputHint.expectingInput
+    });
 
-                var reply = createEvent("startRecording", {}, message.address);
-                bot.send(reply);
-            }
-        });
-    }
-});*/
+    var msg = new builder.Message(session);
+    msg.attachmentLayout(builder.AttachmentLayout.carousel);
+    msg.attachments([
+    new builder.HeroCard(session)
+        .title("Vodafone Qatar")
+        .text("Welcome to Vodafone Qatar chatbot")
+        //.inputHint(builder.InputHint.expectingInput)
+        //.speak("test")
+        .images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
+        
+        .buttons([
+            builder.CardAction.imBack(session, "English", "English"),
+            builder.CardAction.imBack(session, "Arabic","Arabic")
+        ])
+    ]);
+    builder.Prompts.choice(session, msg, "Arabic|English");
 
+}]) 
+*/
 
 bot.on("event", function (event) {
-    bot.beginDialog(event.address, 'testing');
+    //bot.beginDialog(event.address, 'testing');
    
    /* 
      var reply = new builder.Message()
