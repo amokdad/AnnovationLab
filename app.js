@@ -50,7 +50,6 @@ bot.dialog('/', [
         */
         builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
             speak: 'Are you sure that you want to cancel this transaction?',
-            retrySpeak: 'Are you sure that you want to cancel this transaction?',
             inputHint: builder.InputHint.expectingInput
         });
         
@@ -96,7 +95,7 @@ bot.on("event", function (event) {
     */
     bot.say('Please hold while I calculate a response.', 
     'Please hold while I calculate a response.', 
-    { inputHint: builder.InputHint.ignoringInput });
+    { inputHint: builder.InputHint.expectingInput });
 
 })
 
