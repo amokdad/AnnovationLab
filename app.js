@@ -41,16 +41,16 @@ bot.set('storage', tableStorage);
  
 bot.dialog('/', [
     function(session){
-
+        session.say("Please Choose","Please Choose");
+        
         var msg = new builder.Message(session);
         msg.attachmentLayout(builder.AttachmentLayout.carousel);
-        var txt = "testing";
         msg.attachments([
         new builder.HeroCard(session)
             .title("Vodafone Qatar")
             .text("Welcome to Vodafone Qatar chatbot")
-            .inputHint(builder.InputHint.expectingInput)
-            .speak("test")
+            //.inputHint(builder.InputHint.expectingInput)
+            //.speak("test")
             .images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
             
             .buttons([
