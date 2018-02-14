@@ -57,7 +57,7 @@ bot.dialog('/', [
 ); 
 
 
-
+/*
 
 bot.on('conversationUpdate', function(message) {
     // Send a hello message when bot is added
@@ -67,6 +67,7 @@ bot.on('conversationUpdate', function(message) {
                 var reply = new builder.Message()
                 .address(message.address)
                 .text("Hi! What language would you like to Use")
+                .speak("Testing")
                 bot.send(reply);
 
                 var reply = createEvent("startRecording", {}, message.address);
@@ -75,6 +76,7 @@ bot.on('conversationUpdate', function(message) {
         });
     }
 });
+*/
 
 bot.on("event", function (event) {
 
