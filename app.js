@@ -57,16 +57,17 @@ bot.dialog('/', [
             .title("Events")
             //.inputHint(builder.InputHint.expectingInput)
             //.speak("test")
-            .images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
+            //.images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
             
             .buttons([
-                builder.CardAction.imBack(session, "Event 1", "Event 2"),
-                builder.CardAction.imBack(session, "Event 1","Event 2")
+                builder.CardAction.imBack(session, "Opening", "Opening"),
+                builder.CardAction.imBack(session, "Closing","Closing")
             ])
         ]);
-        builder.Prompts.choice(session, msg, "Event 1|Event 2");
+        builder.Prompts.choice(session, msg, "Opening|Closing");
         
-    },
+    }
+    /*,
 
     function(session){
         var x = results.response;
@@ -85,7 +86,7 @@ bot.dialog('/', [
 
     function (session, results) {
         var x = results.response;
-        session.say(x, "welcome " + x)}
+        session.say(x, "welcome " + x)}*/
    
 ]   // session.send('You said ' + session.message.text);
 ); 
