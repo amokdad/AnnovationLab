@@ -51,9 +51,7 @@ bot.dialog('/', [
     },
     function (session, results) {
         var x = results.response;
-        session.say(x, 
-        "welcome " + x
-        )}
+        session.say(x, "welcome " + x)}
    
 ]   // session.send('You said ' + session.message.text);
 );
@@ -63,7 +61,11 @@ bot.on('conversationUpdate', function(message) {
     if (message.membersAdded) {
         message.membersAdded.forEach(function(identity) {
             if (identity.id === message.address.bot.id) {
-                var reply = new builder.Message().address(message.address).text("Hi! What is your name?").speak("testing application");
+                var reply = new builder.Message()
+                .address(message.address)
+                //.text("Hi! What is your name?")
+                .speak("testing application")
+                .inputHint(builder.InputHint.expectingInput);
                 bot.send(reply);
             }
         });
