@@ -80,7 +80,8 @@ bot.on("event", function (event) {
 
     var reply = new builder.Message()
     .address(event.address)
-    .text("Hi! What language would you like to Usess");
+    .text("Hi! What language would you like to Usess")
+    .speak("Testing")
     bot.send(reply);
 
 })
