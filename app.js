@@ -54,7 +54,7 @@ bot.dialog('/', [
         session.say(x, "welcome " + x)}
    
 ]   // session.send('You said ' + session.message.text);
-);
+); 
 
 bot.on('conversationUpdate', function(message) {
     // Send a hello message when bot is added
@@ -67,7 +67,21 @@ bot.on('conversationUpdate', function(message) {
                 .speak("testing application")
                 .inputHint(builder.InputHint.expectingInput);
                 bot.send(reply);
+
+
+
+                var reply = createEvent("startRecording", {}, message.address);
+                bot.send(reply);
             }
         });
     }
 });
+
+
+const createEvent = (eventName, value, address) => {
+    var msg = new builder.Message().address(address);
+    msg.data.type = "event";
+    msg.data.name = eventName;
+    msg.data.value = value;
+    return msg; 
+}

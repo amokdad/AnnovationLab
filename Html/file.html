@@ -115,8 +115,9 @@
               return activity.type === 'event' && activity.name === 'startRecording';
           })
           .subscribe(function (activity) {
-              data = JSON.parse(activity.value);
-              startRecording(activity.value);
+              alert('s');
+              //data = JSON.parse(activity.value);
+              //startRecording(activity.value);
           });
 
         var data = {};
