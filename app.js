@@ -35,10 +35,22 @@ var tableName = 'botdata';
 var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
+var englishRecognizer = new builder.RegExpRecognizer( "English", /(English)/i),
+
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
- 
+
+var intents = new builder.IntentDialog({ recognizers: [
+    englishRecognizer
+    ] 
+})
+
+.matches('English',(session, args) => {
+    // session.send('English');
+    session.say("Okay Thanks");
+})
+
 bot.dialog('/', [
     function(session){
         
@@ -53,10 +65,6 @@ bot.dialog('/', [
         new builder.HeroCard(session)
             .title("Vodafone Qatar")
             .text("Welcome to Vodafone Qatar chatbot")
-            //.inputHint(builder.InputHint.expectingInput)
-            //.speak("test")
-            .images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
-            
             .buttons([
                 builder.CardAction.imBack(session, "English", "English"),
                 builder.CardAction.imBack(session, "Arabic","Arabic")
