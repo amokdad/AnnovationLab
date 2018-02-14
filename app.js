@@ -85,17 +85,14 @@ bot.on('conversationUpdate', function(message) {
 */
 
 bot.on("event", function (event) {
-/*
+
     var reply = new builder.Message()
     .address(event.address)
-    //.text("Hi! What language would you like to Usess")
+    .text("Hi! What language would you like to Usess")
     .speak("Testing")
     .inputHint(builder.InputHint.expectingInput)
-    bot.say(reply);
-    */
-    bot.say('Please hold while I calculate a response.', 
-    'Please hold while I calculate a response.', 
-    { inputHint: builder.InputHint.expectingInput });
+    bot.send(reply);
+ 
 
 })
 
