@@ -116,20 +116,11 @@
           })
           .subscribe(function (activity) {
               alert('s');
-              //data = JSON.parse(activity.value);
-              //startRecording(activity.value);
+
           });
 
         var data = {};
 
-        function startRecording(newColor) {
-            //$('#divRecord').show();
-            
-            $('#divRecord').appendTo('.wc-console');
-            //$('#record').click();
-            //$('.wc-console').append($('#divRecord').html());
-            //document.body.style.backgroundColor = newColor;
-        }
 
         function postButtonMessage(value) {
             data.recording = value;

@@ -56,6 +56,9 @@ bot.dialog('/', [
 ]   // session.send('You said ' + session.message.text);
 ); 
 
+
+
+
 bot.on('conversationUpdate', function(message) {
     // Send a hello message when bot is added
     if (message.membersAdded) {
@@ -63,12 +66,8 @@ bot.on('conversationUpdate', function(message) {
             if (identity.id === message.address.bot.id) {
                 var reply = new builder.Message()
                 .address(message.address)
-                //.text("Hi! What is your name?")
-                .speak("testing application")
-                .inputHint(builder.InputHint.expectingInput);
+                .text("Hi! What language would you like to Use")
                 bot.send(reply);
-
-
 
                 var reply = createEvent("startRecording", {}, message.address);
                 bot.send(reply);
@@ -77,6 +76,14 @@ bot.on('conversationUpdate', function(message) {
     }
 });
 
+bot.on("event", function (event) {
+    
+    var reply = new builder.Message()
+    .address(event.address)
+    .text("Hi! What language would you like to Use");
+    bot.send(msg);
+
+})
 
 const createEvent = (eventName, value, address) => {
     var msg = new builder.Message().address(address);
