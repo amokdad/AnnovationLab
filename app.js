@@ -38,7 +38,8 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
- 
+
+
 bot.dialog('/', [
     function(session){
         
@@ -82,9 +83,13 @@ bot.dialog('/', [
 ]   // session.send('You said ' + session.message.text);
 ); 
 
+bot.dialog("testing",[function(session,args){
+    session.say("test","test");
+},function(session,results){
+
+}])
 
 /*
-
 bot.on('conversationUpdate', function(message) {
     // Send a hello message when bot is added
     if (message.membersAdded) {
@@ -101,18 +106,20 @@ bot.on('conversationUpdate', function(message) {
             }
         });
     }
-});
-*/
+});*/
+
 
 bot.on("event", function (event) {
-
-    var reply = new builder.Message()
+    bot.beginDialog(event.address, 'testing');
+   
+   /* 
+     var reply = new builder.Message()
     .address(event.address)
     .text("Welcome Prime Minister, How may i help you?")
     .speak("Welcome Prime Minister, How may i help you?")
     .inputHint(builder.InputHint.expectingInput)
     bot.send(reply);
- 
+    */
 
 })
 
