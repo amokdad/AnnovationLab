@@ -77,11 +77,11 @@ bot.on('conversationUpdate', function(message) {
 });
 
 bot.on("event", function (event) {
-    
+
     var reply = new builder.Message()
     .address(event.address)
-    .text("Hi! What language would you like to Use");
-    bot.send(msg);
+    .text("Hi! What language would you like to Usess");
+    bot.send(reply);
 
 })
 

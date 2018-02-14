@@ -123,13 +123,13 @@
 
 
         function postButtonMessage(value) {
-            data.recording = value;
+            //data.recording = value;
             botConnection
               .postActivity({
                   from: { id: 'me' },
                   name: 'complaintRecorded',
                   type: 'event',
-                  value: JSON.stringify(data)
+                  value: {}
               })
               .subscribe(function (id) {
                   console.log('"buttonClicked" sent');
