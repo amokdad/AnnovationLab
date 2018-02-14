@@ -88,8 +88,8 @@ bot.on("event", function (event) {
 
     var reply = new builder.Message()
     .address(event.address)
-    .text("Hi! What language would you like to Usess")
-    .speak("Testing")
+    .text("Welcome Prime Minister, How may i help you?")
+    .speak("Welcome Prime Minister, How may i help you?")
     .inputHint(builder.InputHint.expectingInput)
     bot.send(reply);
  
