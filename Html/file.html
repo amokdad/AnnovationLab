@@ -139,12 +139,6 @@
     </script>
 
 
-    <input type="button" onclick="Check()" value="check"/>
-    <audio controls>
-            
-            <source src="download.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-          </audio>
    
     <script>
 
@@ -152,9 +146,15 @@
         
         $.get( "https://advancyaannovationlab-main.azurewebsites.net/result.txt", function( data ) {
             
-            //var result = JSON.parse(data);
-                postButtonMessage("");
-                $('.wc-mic').click();
+                var audio = new Audio('download.mp3');
+                audio.play();
+                setTimeout(function(){ 
+
+                    //postButtonMessage("");
+                    $('.wc-mic').click();
+                
+                }, 3000);
+                
             }).fail(function() {
             Check();
             })

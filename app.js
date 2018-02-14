@@ -40,21 +40,41 @@ var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
  
 bot.dialog('/', [
+    function(session){
+
+        var msg = new builder.Message(session);
+        msg.attachmentLayout(builder.AttachmentLayout.carousel);
+        var txt = "testing";
+        msg.attachments([
+        new builder.HeroCard(session)
+            .title("Vodafone Qatar")
+            .text("Welcome to Vodafone Qatar chatbot")
+            .inputHint(builder.InputHint.expectingInput)
+            .speak("test")
+            .images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
+            
+            .buttons([
+                builder.CardAction.imBack(session, "English", "English"),
+                builder.CardAction.imBack(session, "Arabic","Arabic")
+            ])
+        ]);
+        builder.Prompts.choice(session, msg, "Arabic|English");
+    },
 
     function(session){
-        /*
-        session.say('Are you sure that you want to cancel this transaction?', 
-        'Please hold while I calculate a response.', 
-        { inputHint: builder.InputHint.expectingInput });
 
-        */
+
+
+        
         builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
             speak: 'Are you sure that you want to cancel this transaction?',
             inputHint: builder.InputHint.expectingInput
         });
-        
-
     },
+
+
+
+
     function (session, results) {
         var x = results.response;
         session.say(x, "welcome " + x)}
