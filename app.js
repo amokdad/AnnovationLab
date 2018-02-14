@@ -41,8 +41,12 @@ bot.set('storage', tableStorage);
  
 bot.dialog('/', [
     function(session){
-        session.say("Please Choose","Please Choose");
         
+        builder.Prompts.text(session, 'Please choose what language do you want', {            
+            speak: 'Please choose what language do you want',
+            inputHint: builder.InputHint.expectingInput
+        });
+
         var msg = new builder.Message(session);
         msg.attachmentLayout(builder.AttachmentLayout.carousel);
         msg.attachments([
