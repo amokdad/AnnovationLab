@@ -50,7 +50,7 @@ bot.dialog('/', [
         */
         builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
             speak: 'Are you sure that you want to cancel this transaction?',
-            speak: 'Are you sure that you want to cancel this transaction?',
+            retrySpeak: 'Are you sure that you want to cancel this transaction?',
             inputHint: builder.InputHint.expectingInput
         });
         
