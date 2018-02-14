@@ -45,8 +45,8 @@ bot.dialog('/', [
 
         //session.say("We have great event to show you", "We have great event to show you")}
         
-        builder.Prompts.text(session, 'We have great event to show you, please select Event 1 or Event 2', {            
-            speak: 'We have great event to show you, please select Event 1 or Event 2',
+        builder.Prompts.text(session, 'We have great event to show you, please select the Opening or Closing event', {            
+            speak: 'We have great event to show you, please select the Opening or Closing event',
             inputHint: builder.InputHint.expectingInput
         });
 
@@ -55,10 +55,6 @@ bot.dialog('/', [
         msg.attachments([
         new builder.HeroCard(session)
             .title("Events")
-            //.inputHint(builder.InputHint.expectingInput)
-            //.speak("test")
-            //.images([builder.CardImage.create(session, "https://raw.githubusercontent.com/bilalghalayini/Vodafone-Chatbot/master/images/logo.png?token=AXIODsyktXd23aO41pFgxn2ISGc41rMcks5afEuHwA%3D%3D")])
-            
             .buttons([
                 builder.CardAction.imBack(session, "Opening", "Opening"),
                 builder.CardAction.imBack(session, "Closing","Closing")
