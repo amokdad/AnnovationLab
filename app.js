@@ -77,8 +77,7 @@ bot.dialog('/', [
             inputHint: builder.InputHint.expectingInput
         });
         
-*/
-        
+      
     },
 
 
