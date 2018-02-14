@@ -38,15 +38,10 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 bot.set('storage', tableStorage);
-
+ 
 bot.dialog('/', [
 
     function(session){
-
-        var msg = new builder.Message(session)
-        .speak('This is the text that will be spoken.')
-        .inputHint(builder.InputHint.acceptingInput);
-        session.send(msg);
 
         builder.Prompts.text(session, 'Are you sure that you want to cancel this transaction?', {            
             speak: 'Are you sure that you want to cancel this transaction?',
